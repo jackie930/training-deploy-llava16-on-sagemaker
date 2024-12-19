@@ -2,7 +2,20 @@
 
 
 ## Overview
- 基于自定义数据集微调llava-hf/llava-v1.6-mistral-7b-hf 模型，并在amazon sagemaker上进行模型部署
+本项目提供了在 AWS 上微调和部署 LLaVA-v1.6-Mistral-7B 多模态大语言模型的完整流程。主要特性包括:
+* 基于自定义数据集进行监督式微调(SFT)
+* 使用 Amazon SageMaker 进行大规模模型训练 
+* 支持 VLLM 加速推理的模型部署 
+* 完整的数据预处理和评估流程
+
+
+## Environments
+
+* Python 3.8+ 
+* PyTorch 2.0+ 
+* 推荐使用 CUDA 11.7+ 
+* 至少 24GB 显存的 GPU (推荐 A10G/H100/A100)
+
 
 ## Installation
 
@@ -15,12 +28,18 @@ here we need to do three steps:
 * prepare the data into specific format
 
 ```bash
+将原始数据转换为指定格式:
+
 python preprocess.py 
 --data_path {INPUT_CSV}
 --output_folder {OUTPUT_DATA_FOLDER}
 ```
+参数说明:
+* data_path: 输入CSV文件路径 
+* output_folder: 输出文件夹路径
 
-* save the file as a hf dataset
+### 创建 HuggingFace Dataset
+将处理后的数据保存为 HuggingFace dataset 格式:
 ```bash
 python prepare.py
 ```
