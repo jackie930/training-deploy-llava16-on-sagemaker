@@ -1,8 +1,7 @@
 from transformers import AutoModelForVision2Seq, AutoProcessor, LlavaForConditionalGeneration
 from datasets import load_dataset,load_from_disk
 
-#dataset = load_from_disk('/home/ec2-user/SageMaker/klook/data0527/data.hf')
-#dataset = load_dataset('HuggingFaceH4/llava-instruct-mix-vsft')
+
 processor = AutoProcessor.from_pretrained('llava-hf/llava-v1.6-mistral-7b-hf', trust_remote_code=True)
 
 
